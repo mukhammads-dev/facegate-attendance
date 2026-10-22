@@ -73,12 +73,19 @@ Keys in `app.py`: `q` quit · `b` toggle blur · `l` toggle landmarks
 
 ## Benchmark
 
-Run `python benchmark.py` on your machine and paste the table here:
+Classic Haar cascade vs YuNet on the same 200 live webcam frames
+(MacBook Air, Apple Silicon, CPU only, `python benchmark.py`):
 
-| Detector | avg ms | FPS | frames with a face |
+| Detector | avg ms / frame | FPS | frames with a face found |
 |---|---|---|---|
-| Haar cascade | – | – | – |
-| YuNet (DNN) | – | – | – |
+| Haar cascade | 60.0 | 17 | 88% |
+| **YuNet (DNN)** | **52.9** | **19** | **100%** |
+
+YuNet found the face in **every** frame, while Haar missed it in roughly 1 of
+every 8 frames, at slightly better speed. YuNet also returns a real confidence
+score and 5 landmarks, which the recognition and liveness steps depend on.
+
+![Haar vs YuNet](docs/benchmark.jpg)
 
 ## Project structure
 
